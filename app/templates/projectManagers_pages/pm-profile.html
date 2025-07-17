@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Manager Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+
+    nav {
+      background: #1f1f1f;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    nav .links a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .profile-card {
+      background-color: white;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-img-wrapper {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #000;
+    }
+
+    .profile-img-wrapper i {
+      font-size: 40px;
+      color: #555;
+    }
+
+    .data-group {
+      margin-bottom: 15px;
+    }
+
+    .data-group label {
+      font-weight: bold;
+      display: inline-block;
+      width: 100px;
+    }
+
+    .data-group span {
+      font-size: 16px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+  </style>
+
+  <!-- Font Awesome for user icon -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav>
+    <div><strong>Project Manager</strong></div>
+  </nav>
+
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-img-wrapper">
+        <i class="fas fa-user"></i>
+      </div>
+      <h2>xyz name</h2>
+      <p>Project Manager</p>
+    </div>
+
+    <div class="section-title">Personal Data</div>
+
+    <div class="data-group">
+      <label>User ID:</label>
+      <span>16</span>
+    </div>
+
+    <div class="data-group">
+      <label>Name:</label>
+      <span>xyz name</span>
+    </div>
+
+    <div class="data-group">
+      <label>Email:</label>
+      <span>lorem@example.com</span>
+    </div>
+
+    <div class="data-group">
+      <label>Role:</label>
+      <span>PM</span>
+    </div>
+  </div>
+
+</body>
+</html>

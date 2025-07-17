@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">Project Manager</span>
+        <a href="#" class="btn btn-outline-light">Log Out</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col d-flex justify-content-between">
+            <h2>Task Overview</h2>
+            <button class="btn btn-primary">+ Add Task</button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Assign Project</th>
+                <th>Task Title</th>
+                <th>Assigned To</th>
+                <th>Assigned Date</th>
+                <th>Deadline</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example Row 1 -->
+            <tr>
+                <td>101</td>
+                <td>Website Revamp</td>
+                <td>Create Landing Page</td>
+                <td>
+                    <select class="form-select">
+                        <option>Ali</option>
+                        <option>Ayesha</option>
+                        <option>Bilal</option>
+                    </select>
+                </td>
+                <td>2025-07-14</td>
+                <td>2025-07-20</td>
+                <td><span class="badge bg-warning">In Progress</span></td>
+            </tr>
+            <!-- Example Row 2 -->
+            <tr>
+                <td>102</td>
+                <td>Mobile App UI</td>
+                <td>Design Login Screen</td>
+                <td>
+                    <select class="form-select">
+                        <option>Ali</option>
+                        <option>Ayesha</option>
+                        <option>Bilal</option>
+                    </select>
+                </td>
+                <td>2025-07-13</td>
+                <td>2025-07-22</td>
+                <td><span class="badge bg-success">Completed</span></td>
+            </tr>
+            <!-- Example Row 3 -->
+            <tr>
+                <td>103</td>
+                <td>AI Job Extractor</td>
+                <td>Integrate Backend</td>
+                <td>
+                    <select class="form-select">
+                        <option>Ali</option>
+                        <option>Ayesha</option>
+                        <option>Bilal</option>
+                    </select>
+                </td>
+                <td>2025-07-15</td>
+                <td>2025-07-25</td>
+                <td><span class="badge bg-danger">Delayed</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

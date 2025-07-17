@@ -24,6 +24,8 @@ driver = uc.Chrome(options=options,version_main=138) #Version must match your ch
 
 driver.get("https://www.investing.com")
 
+WebDriverWait(driver, 10)
+
 
 # import undetected_chromedriver as uc
 # from selenium.webdriver.common.by import By

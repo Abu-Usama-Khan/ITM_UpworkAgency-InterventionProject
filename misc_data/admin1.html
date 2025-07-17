@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Task Management</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">AI Powered Job Extraction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Project List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Project Managers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col d-flex justify-content-between">
+            <h2>27 Tasks</h2>
+            <span>Assigned to Dumbledore Calrissian</span>
+        </div>
+    </div>
+
+    <!-- Table Options -->
+    <div class="row mb-3">
+        <div class="col d-flex justify-content-between">
+            <button class="btn btn-light">Save/Schedule this view</button>
+            <button class="btn btn-light">Clear</button>
+            <div>
+                <button class="btn btn-outline-secondary">Table</button>
+                <button class="btn btn-outline-secondary">Card</button>
+                <button class="btn btn-outline-secondary">Simple</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Project</th>
+                <th scope="col">Assigned</th> <!-- Added Assigned Column -->
+                <th scope="col">Assigned To</th> <!-- Dropdown Column -->
+                <th scope="col">Due</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Task 1 -->
+            <tr>
+                <td>4531</td>
+                <td>Product updates for new line</td>
+                <td>Web Redesign 004C</td>
+                <td><i class="bi bi-check-circle text-success"></i></td> <!-- Tick Mark for Assigned -->
+                <td>
+                    <select class="form-select">
+                        <option>User1</option>
+                        <option>User2</option>
+                    </select>
+                </td>
+                <td>08/02/2023 <i class="bi bi-exclamation-circle text-warning"></i></td>
+                <td><span class="badge bg-danger">In Progress</span></td>
+            </tr>
+            <!-- Task 2 -->
+            <tr>
+                <td>4535</td>
+                <td>Make creating an account optional</td>
+                <td>Web Redesign 004C</td>
+                <td><i class="bi bi-check-circle text-success"></i></td> <!-- Tick Mark for Assigned -->
+                <td>
+                    <select class="form-select">
+                        <option>User1</option>
+                        <option>User2</option>
+                    </select>
+                </td>
+                <td>08/02/2023 <i class="bi bi-exclamation-circle text-warning"></i></td>
+                <td><span class="badge bg-warning">In Progress</span></td>
+            </tr>
+            <!-- Task 3 -->
+            <tr>
+                <td>4587</td>
+                <td>Image Paste Demo</td>
+                <td>Web Redesign 004C</td>
+                <td><i class="bi bi-check-circle text-success"></i></td> <!-- Tick Mark for Assigned -->
+                <td>
+                    <select class="form-select">
+                        <option>User1</option>
+                        <option>User2</option>
+                    </select>
+                </td>
+                <td>08/04/2023 <i class="bi bi-info-circle text-info"></i></td>
+                <td><span class="badge bg-primary">Need Assistance</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

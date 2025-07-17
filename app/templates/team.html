@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (optional, but good for consistency) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            /* Using a light blue background, similar to the previous request's blue, but fitting Bootstrap's aesthetic */
+            background-color: #f8f9fa; /* Light gray background for content area */
+            font-family: 'Inter', sans-serif; /* Keeping Inter font if preferred, otherwise Bootstrap default */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            /* Dark navbar background as in your example */
+            background-color: #343a40 !important; /* !important to override Bootstrap's default if needed */
+        }
+        .container {
+            flex-grow: 1; /* Allows content container to take up remaining space */
+        }
+        .table-responsive {
+            /* Added for better responsiveness on small screens */
+            margin-top: 20px;
+        }
+        .status-active {
+            color: #198754; /* Bootstrap's success green */
+            font-weight: bold;
+        }
+        .status-inactive {
+            color: #6c757d; /* Bootstrap's muted gray */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">Welcome Team</span>
+        <a href="#" class="btn btn-outline-light">Log Out</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col">
+            <h2 class="mb-0">Team Members Overview</h2>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Team Member Data -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>TM001</td>
+                    <td>john.doe@example.com</td>
+                    <td><span class="status-active">Active</span></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>TM002</td>
+                    <td>jane.smith@example.com</td>
+                    <td><span class="status-inactive">Inactive</span></td>
+                </tr>
+                <tr>
+                    <td>Peter Jones</td>
+                    <td>TM003</td>
+                    <td>peter.jones@example.com</td>
+                    <td><span class="status-active">Active</span></td>
+                </tr>
+                <tr>
+                    <td>Alice Brown</td>
+                    <td>TM004</td>
+                    <td>alice.brown@example.com</td>
+                    <td><span class="status-active">Active</span></td>
+                </tr>
+                <tr>
+                    <td>Bob White</td>
+                    <td>TM005</td>
+                    <td>bob.white@example.com</td>
+                    <td><span class="status-inactive">Inactive</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
