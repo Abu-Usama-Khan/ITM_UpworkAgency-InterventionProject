@@ -93,7 +93,7 @@
       <div class="profile-img-wrapper">
         <i class="fas fa-user"></i>
       </div>
-      <h2>xyz name</h2>
+      <h2> {{ profile[1] }} </h2>
       <p>Project Manager</p>
     </div>
 
@@ -101,22 +101,17 @@
 
     <div class="data-group">
       <label>User ID:</label>
-      <span>16</span>
-    </div>
-
-    <div class="data-group">
-      <label>Name:</label>
-      <span>xyz name</span>
+      <span> {{ profile[0] }} </span>
     </div>
 
     <div class="data-group">
       <label>Email:</label>
-      <span>lorem@example.com</span>
+      <span> {{ profile[2] }} </span>
     </div>
 
     <div class="data-group">
       <label>Role:</label>
-      <span>PM</span>
+      <span> {{ profile[3] }} </span>
     </div>
   </div>
 

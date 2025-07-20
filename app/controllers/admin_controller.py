@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from app.db import get_connection
+from app.models.model import query 
+
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -13,38 +14,27 @@ def home():
     elif session['role_id'] == 3:
         return redirect(url_for('teamMembers.home'))
 
-    connection = get_connection()
-    cursor = connection.cursor()
-
-    cursor.execute("""
+    projects = query("""
         select id, title, description
         from projects
         where manager_id is null
-    """)
-
-    projects = cursor.fetchall()
-
-    cursor.execute("""
+        """)
+    
+    project_mgrs = query("""
         select name
         from users
         where role_id=2
-    """)
+        """)
 
-    project_mgrs = cursor.fetchall()
-
-    cursor.execute("""
+    active_jobs = query("""
         select id, title, job_description, proposal, feasibility
         from job_proposal 
         where status = 'active'
     """)
 
-    active_jobs = cursor.fetchall()
-
-    cursor.close()
-    connection.close()
-
     return render_template('admin_pages/admin_home.html', 
                            projects=projects, project_mgrs=project_mgrs, active_jobs=active_jobs)
+
 
 @admin_bp.route('/project/', methods=['POST']) 
 def assignProject():
@@ -52,66 +42,48 @@ def assignProject():
     start_date = request.form['start_date']
     deadline = request.form['deadline']
     manager_name = request.form['manager_name']
-    connection = get_connection()
-    cursor = connection.cursor()
 
-    cursor.execute("""
-        select id from users where name = %s
-        """,(manager_name,))
-    
-    manager_id = cursor.fetchone()[0]              
+    manager_id = query("""
+        select id from users where name = %s and role_id=2
+        """,(manager_name,))[0][0]         
 
-    cursor.execute("""
+    query("""
         UPDATE projects
         SET start_date = %s,
         deadline = %s,
         manager_id = %s,
         progress = 0
         WHERE id = %s
-        """, (start_date, deadline, manager_id, project_id))
-
-    connection.commit()
-
-    cursor.close()
-    connection.close()
+        """,(start_date, deadline, manager_id, project_id))
     
     return redirect(url_for('admin.home'))
 
 @admin_bp.route('/job/', methods=['POST']) 
 def approveJob():
     job_id = request.form['job_id']
-    approval = request.form['approval']
-    connection = get_connection()
-    cursor = connection.cursor()          
+    approval = request.form['approval']     
 
-    cursor.execute("""
+    query("""
         UPDATE job_proposal
         SET status = 'inactive',
         approval = %s
         WHERE id = %s
         """, (approval, job_id))
-
-    connection.commit()
-
-    cursor.execute("""
+    
+    row = query("""
         select title, job_description
         from job_proposal
         WHERE id = %s
-        """, (job_id,))
+        """, (job_id,))[0]
     
-    row = cursor.fetchone()
     title = row[0]
     description = row[1]
 
-    cursor.execute("""
-        insert into projects (title, description)
-        values (%s, %s)
-        """, (title, description))
-    
-    connection.commit()
-
-    cursor.close()
-    connection.close()
+    if approval == 'approved':
+        query("""
+            insert into projects (title, description)
+            values (%s, %s)
+            """, (title, description))
     
     return redirect(url_for('admin.home'))
 
@@ -124,22 +96,14 @@ def assignedProjects():
         return redirect(url_for('projectManagers.home'))
     elif session['role_id'] == 3:
         return redirect(url_for('teamMembers.home'))
-    
-    connection = get_connection()
-    cursor = connection.cursor()
 
-    cursor.execute("""
+    projects = query("""
         select p.id, p.description, u.name, p.start_date, p.deadline, p.progress
         from projects p
         join users u
         on p.manager_id = u.id
         where manager_id is not null
     """)
-
-    projects = cursor.fetchall()
-
-    cursor.close()
-    connection.close()
 
     return render_template('admin_pages/admin_assignedProjects.html', projects = projects)
 
@@ -152,17 +116,12 @@ def jobHistory():
         return redirect(url_for('projectManagers.home'))
     elif session['role_id'] == 3:
         return redirect(url_for('teamMembers.home'))
-
-    connection = get_connection()
-    cursor = connection.cursor()
-
-    cursor.execute("""
+    
+    jobs = query("""
         select id, title, job_description, proposal, feasibility, approval
         from job_proposal
         where status = 'inactive'
         """)
-    
-    jobs = cursor.fetchall()
 
     return render_template('admin_pages/admin_job_history.html', jobs=jobs)
 
@@ -175,21 +134,13 @@ def profile():
         return redirect(url_for('projectManagers.home'))
     elif session['role_id'] == 3:
         return redirect(url_for('teamMembers.home'))
-    
-    connection = get_connection()
-    cursor = connection.cursor()
 
-    cursor.execute("""
+    profile = query("""
         select u.id, u.name, u.email, r.title
         from users u
         join roles r
         on u.role_id = r.id 
         where u.id = %s
-    """,(session['user_id'],))
-
-    profile = cursor.fetchone()
-
-    cursor.close()
-    connection.close()
+    """,(session['user_id'],))[0]
 
     return render_template('admin_pages/admin_profile.html', profile = profile)

@@ -1,0 +1,23 @@
+Unzip the folder
+
+Extract it somewhere like: C:\Users\Name\Documents\mysql-dumps\your_database_name
+
+Open MySQL Workbench
+
+Go to Server > Data Import
+
+Choose "Import from Dump Folder"
+
+Select the folder they unzipped (your_database_name)
+
+Under "Default Schema to Import To"
+
+Either:
+
+Choose an existing schema
+
+Or click New to create a new one (like imported_db)
+
+Click Start Import
+
+Workbench will read all the .sql files inside the folder and restore the tables/data.

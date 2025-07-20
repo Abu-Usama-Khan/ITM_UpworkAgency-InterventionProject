@@ -1,0 +1,5 @@
+--This will activate the environment--
+pipenv shell
+
+--This will run the application--
+python wsgi.py

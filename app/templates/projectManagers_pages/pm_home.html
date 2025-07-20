@@ -61,6 +61,19 @@
       width: 70px;
       padding: 4px;
     }
+
+    .horizontal-list {
+  list-style: none;         /* remove bullets */
+  padding: 0;
+  margin: 0;
+  display: flex;            /* arrange horizontally */
+  gap: 20px;                /* spacing between items */
+}
+
+.horizontal-list li {
+  display: inline;          /* or inline-block or use flex above */
+}
+
   </style>
 </head>
 <body>
@@ -68,9 +81,20 @@
   <nav>
     <div><strong>Project Manager</strong></div>
     <div class="links">
-      <a href="#">Home</a>
-      <a href="#">Profile</a>
-      <a href="#">Logout</a>
+      <ul class="horizontal-list">
+        <form method="GET" action="{{ url_for('projectManagers.home') }}">
+          <button type="submit" class="btn btn-dark">Home</button>
+        </form>
+        <form method="GET" action="{{ url_for('projectManagers.profile') }}">
+          <button type="submit" class="btn btn-dark">Profile</button>
+        </form>
+        <form method="GET" action="{{ url_for('main.logout') }}">
+          <button type="submit" class="btn btn-dark">Logout</button>
+        </form>
+      </ul>
+      
+      </div>
+      </div>
     </div>
   </nav>
 
@@ -105,6 +129,7 @@
         </tbody>
       </table>
     </div>
+  {% set project_id = project[0] %}
   {% endfor %}
 
   <!-- Modal -->
@@ -116,24 +141,23 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="taskForm">
+          <form id="taskForm" method="POST" action="{{ url_for('projectManagers.assignTask') }}">
             <!-- Task Description -->
             <div class="mb-3">
               <label for="taskDesc" class="form-label">Task Description</label>
-              <input type="text" class="form-control" id="taskDesc" required>
+              <input type="text" class="form-control" name="taskDesc" required>
+              <input type="hidden" name="projectId" value="{{ project_id }}">
             </div>
 
            
            <!-- Assigned To Dropdown -->
 <div class="mb-3">
   <label for="assignedTo" class="form-label">Assigned To</label>
-  <select class="form-select" id="assignedTo" required>
-    <option value="">Select</option>
-    <option value="Alice">Abu Usama</option>
-    <option value="Bob">Naushaba Majid</option>
-    <option value="Charlie">Farrukh Nawaz</option>
-    <option value="Diana">Waqas Hameed</option>
-    <option value="Diana">Abdul Quddus</option>
+  <select class="form-select" name="assignedTo" required>
+    <option value="" disabled selected>Select</option>
+    {% for user in users %}
+      <option value="{{ user[0] }}"> {{ user[0] }} </option>
+    {% endfor %}
   </select>
 </div>
 
@@ -141,7 +165,7 @@
             <!-- Priority Selection -->
             <div class="mb-3">
               <label for="priority" class="form-label">Priority</label>
-              <select class="form-select" id="priority" required>
+              <select class="form-select" name="priority" required>
                 <option value="">Select</option>
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -152,13 +176,13 @@
             <!-- Deadline -->
             <div class="mb-3">
               <label for="deadline" class="form-label">Deadline</label>
-              <input type="date" class="form-control" id="deadline" required>
+              <input type="date" class="form-control" name="deadline" required>
             </div>
 
             <!-- Comments -->
             <div class="mb-3">
               <label for="comments" class="form-label">Comments</label>
-              <textarea class="form-control" id="comments" rows="3" placeholder="Optional notes or comments..."></textarea>
+              <textarea class="form-control" name="comments" rows="3" placeholder="Optional notes or comments..."></textarea>
             </div>
 
             <!-- Submit Button -->
